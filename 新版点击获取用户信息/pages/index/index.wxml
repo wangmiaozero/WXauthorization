@@ -1,0 +1,64 @@
+<!--index.wxml-->
+  <view class='i-header'>
+    <view class='g-bda-userinfo'>
+      <view class="g-bda-userinfo-30">
+        <image class="userinfo-avatar" src="{{userData.userPic?userData.userPic:'/images/login-bg.jpg'}}"></image>
+      </view>
+      <view wx:if="{{userData.nickName}}" class="g-bda-userinfo-70">
+        <view class="userinfo-nickname">{{ userData.nickName }}</view>
+        <view v-if="{{signNum}}" class="userinfo-sign">已签到{{signNum}}天</view>
+        <view v-else></view>
+      </view>
+      <view wx:else class="g-bda-userinfo-70">
+        <view class="userinfo-nickname">尚未解锁</view>
+        <view class="userinfo-sign">请点击下方的按钮解锁</view>
+      </view>
+    </view>
+  </view>
+  <!--解锁签到-->
+   <view wx:if="{{userData.nickName}}" class="contain">
+    <view class="zan-panel" style="border-top:0px;border-bottom:0px;width: 100%">
+      <view class="zan-cell zan-cell--access">
+        <view class="zan-cell__bd">
+          <image src="/images/lock.png"></image>
+          <span>签到</span>
+        </view>
+      </view>
+      <view class="item-wrapper">
+        <view wx:if="{{sign}}" class="unlock_v">
+          <view class='unlock-btn-cicle'>
+            <i class="weui-icon-success weui-icon_msg"></i>
+          </view>
+          <text class="open-word">今日签到时间：{{signTime.createdAt}}</text>
+        </view>
+        <view wx:else class="unlock_v">
+          <view class="unlock-btn-cicle">
+            <button class="circle-btn-sign" type="default" bindtap="sign">签到</button>
+          </view>
+          <view class="open-word">点击按钮签到</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view wx:else class="contain">
+    <view class="zan-panel zan-panel-lock">
+      <view class="zan-cell zan-cell--access">
+        <view class="zan-cell__bd">
+          <image src="/images/lock.png"></image>
+          <span>解锁</span>
+        </view>
+
+      </view>
+      <view class="item-wrapper">
+        <view class="unlock_v">
+          <view class="unlock-btn-cicle">
+            <button class="circle-btn" open-type="getUserInfo" type="primary" bindgetuserinfo="bindGetUserInfo">
+              解锁
+            </button>
+          </view>
+          <view class="open-word">点击解锁按钮解锁更多功能</view>
+        </view>
+      </view>
+    </view>
+    <view class="zan-panel zan-panel-bottom"></view>
+  </view>

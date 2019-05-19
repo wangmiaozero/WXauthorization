@@ -1,0 +1,35 @@
+<!--index.wxml-->
+<!--模拟弹框-->
+<view class="modal-box" hidden='{{!showTip}}'>
+  <view class="modal-content">
+    <view class="content-title">提示信息</view>
+    <view class="content-text">
+      绑定微信号需要收集您的部分用户信息，否则将无法绑定成功，请点击“确认”后按操作提示授权。
+    </view>
+  </view>
+  <view class="modal-btns">
+    <view class="weui-flex">
+      <view class="weui-flex__item">
+        <button class="dialog-btn cancel" bindtap="exit">取消</button>
+      </view>
+      <view class="weui-flex__item">
+        <button class="dialog-btn confirm" open-type="getUserInfo" bindgetuserinfo="getUserInfo">确认</button>
+      </view>
+    </view>
+  </view>
+</view>
+<!--模拟弹框-->
+  <view class='i-header'>
+    <view class='g-bda-userinfo'>
+      <view class="g-bda-userinfo-30">
+        <image class="userinfo-avatar" src="{{userData.userPic?userData.userPic:'/images/login-bg.jpg'}}"></image>
+      </view>
+      <view wx:if="{{userData.nickName}}" class="g-bda-userinfo-70">
+        <view class="userinfo-nickname">{{ userData.nickName }}</view>
+      </view>
+      <view wx:else class="g-bda-userinfo-70">
+        <view class="userinfo-nickname">尚未解锁</view>
+        <view class="userinfo-sign">请点击下方的按钮解锁</view>
+      </view>
+    </view>
+  </view>
